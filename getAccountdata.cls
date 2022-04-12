@@ -1,7 +1,7 @@
 public with sharing class LeadGraphController {
   @AuraEnabled(cacheable = true)
 
-        public static Map < String, Decimal > getcaseStatus(String searchKey ,String status ) {
+        public static Map < String, Decimal > getAccountdata(String searchKey ,String status ) {
            
             String resolvedField1 = searchKey;
 
