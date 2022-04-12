@@ -2,7 +2,7 @@ import {LightningElement,api,wire,track} from 'lwc';
 import {loadScript} from 'lightning/platformResourceLoader';
 import ChartJS from '@salesforce/resourceUrl/ChartJs';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
-import getcaseStatus from '@salesforce/apex/LeadGraphController.getcaseStatus';
+import getAccountdata from '@salesforce/apex/LeadGraphController.getAccountdata';
 export default class Test extends LightningElement {
     @api heading;
     @api Object;
@@ -11,7 +11,7 @@ export default class Test extends LightningElement {
    
     
     searchKey = '';
-   // @wire(getcaseStatus, { searchKey: '$Object' })
+   // @wire(getAccountdata, { searchKey: '$Object' })
    // contacts;
   
     
