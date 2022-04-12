@@ -1,9 +1,24 @@
-public class getAccountdata {
- @AuraEnabled(cacheable = true)
+public with sharing class LeadGraphController {
+  @AuraEnabled(cacheable = true)
 
-        public static  List < Account > getAccountRating(string searchKey) {
-        List < Account >AccountList = [SELECT Id, Name, BillingCity, BillingState, Rating ,Status__c FROM Account where Rating =: searchKey];
-          System.debug(AccountList);
-        return AccountList;
+        public static Map < String, Decimal > getcaseStatus(String searchKey ,String status ) {
+           
+            String resolvedField1 = searchKey;
+
+            String query ='Select Count(Owner.Id) leadCount,  Owner.Name Name from ' + resolvedField1 + '   where Status =  \'close\'   GROUP BY  Status, Owner.Name';
+        
+          Map < String, Decimal > wrapp = new Map < String, Decimal > ();
+
+       for (AggregateResult ar: Database.query(query)) {
+            wrapp.put(String.valueOf(ar.get('Name')), (Decimal) ar.get('leadCount'));
+
         }
-}
+        System.debug( 'ffffffffffff' +wrapp);
+        System.debug(status );
+        return wrapp;
+      
+        }
+    }
+
+
+
